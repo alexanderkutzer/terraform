@@ -70,7 +70,17 @@ resource "aws_s3_bucket_policy" "site" {
     ]
 }
 
+# Automatischer Build der React-App mit Terraform
+resource "null_resource" "build_react_app" {
+  provisioner "local-exec" {
+    command = "cd ${path.module}/react-s3-app && npm install && npm run build"
 
+  }
+
+  triggers = {
+    always_run = "${timestamp()}"
+  }
+}
 
 # Automatisches Hochladen aller Dateien aus dem React Build-Ordner
 resource "aws_s3_object" "react_files" {
