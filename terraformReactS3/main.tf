@@ -102,6 +102,6 @@ resource "aws_s3_object" "react_files" {
     "ttf"  = "font/ttf",
     "eot"  = "application/vnd.ms-fontobject"
   }, regex("\\.([^.]+)$", each.value)[0], "application/octet-stream")
-
+  depends_on =[null_resource.build_frontend]
   acl = "public-read"
 }
