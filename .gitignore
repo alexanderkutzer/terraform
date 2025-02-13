@@ -13,4 +13,4 @@ crash.log
 # AWS Zugriffsdaten (falls vorhanden)
 *.pem
 *.key
-
+*.env
